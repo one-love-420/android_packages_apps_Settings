@@ -47,6 +47,7 @@ import android.os.SystemProperties;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceClickListener;
+import android.preference.PreferenceCategory;
 import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
 import android.preference.SwitchPreference;
@@ -176,7 +177,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
             removePreference(KEY_AUTO_ROTATE);
         }
 
-        PreferenceScreen wakeupPrefs = (PreferenceScreen) findPreference(CATEGORY_WAKE_UP);
+        PreferenceCategory wakeupPrefs = (PreferenceCategory) findPreference(CATEGORY_WAKE_UP);
 
         mWakeWhenPluggedOrUnplugged =
                 (SwitchPreference) findPreference(KEY_WAKE_WHEN_PLUGGED_OR_UNPLUGGED);

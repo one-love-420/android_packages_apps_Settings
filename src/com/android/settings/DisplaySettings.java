@@ -77,8 +77,9 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private static final String KEY_AUTO_ROTATE = "auto_rotate";
     private static final String KEY_WAKE_WHEN_PLUGGED_OR_UNPLUGGED = "wake_when_plugged_or_unplugged";
     private static final String KEY_TAP_TO_WAKE = "double_tap_wake_gesture";
+    private static final String KEY_PROXIMITY_WAKE = "proximity_on_wake";
 
-    private static final String CATEGORY_WAKE_UP = "category_wakeup_options";
+    private static final String CATEGORY_ADVANCED = "category_advanced_options";
 
     private static final int DLG_GLOBAL_CHANGE_WARNING = 1;
 
@@ -177,7 +178,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
             removePreference(KEY_AUTO_ROTATE);
         }
 
-        PreferenceCategory wakeupPrefs = (PreferenceCategory) findPreference(CATEGORY_WAKE_UP);
+        PreferenceCategory advancedPrefs = (PreferenceCategory) findPreference(CATEGORY_ADVANCED);
 
         mWakeWhenPluggedOrUnplugged =
                 (SwitchPreference) findPreference(KEY_WAKE_WHEN_PLUGGED_OR_UNPLUGGED);
@@ -192,8 +193,15 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
 
         mTapToWake = (SwitchPreference) findPreference(KEY_TAP_TO_WAKE);
         if (!isTapToWakeSupported()) {
-            wakeupPrefs.removePreference(mTapToWake);
+            advancedPrefs.removePreference(mTapToWake);
             mTapToWake = null;
+        }
+
+        boolean proximityCheckOnWait = getResources().getBoolean(
+                com.android.internal.R.bool.config_proximityCheckOnWake);
+        if (!proximityCheckOnWait) {
+            advancedPrefs.removePreference(findPreference(KEY_PROXIMITY_WAKE));
+            Settings.System.putInt(getContentResolver(), Settings.System.PROXIMITY_ON_WAKE, 1);
         }
     }
 

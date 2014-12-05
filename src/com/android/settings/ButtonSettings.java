@@ -90,17 +90,14 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
     public static final int KEY_MASK_APP_SWITCH = 0x10;
     public static final int KEY_MASK_CAMERA = 0x20;
 
-    private static final String KEY_POWER_END_CALL = "power_end_call";
-    private SwitchPreference mPowerEndCall;
-
     private ListPreference mHomeLongPressAction;
     private ListPreference mHomeDoubleTapAction;
     private ListPreference mMenuPressAction;
     private ListPreference mMenuLongPressAction;
     private ListPreference mVolumeKeyCursorControl;
-    private CheckBoxPreference mDisableNavigationKeys;
-    private CheckBoxPreference mPowerEndCall;
-    private CheckBoxPreference mHomeAnswerCall;
+    private SwitchPreference mDisableNavigationKeys;
+    private SwitchPreference mPowerEndCall;
+    private SwitchPreference mHomeAnswerCall;
 
     private PreferenceCategory mNavigationPreferencesCat;
 
@@ -119,9 +116,6 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
         final int deviceKeys = getResources().getInteger(
                 com.android.internal.R.integer.config_deviceHardwareKeys);
 
-        final PreferenceCategory powerCategory =
-                (PreferenceCategory) prefScreen.findPreference(CATEGORY_POWER);
-
         final boolean hasPowerKey = KeyCharacterMap.deviceHasKey(KeyEvent.KEYCODE_POWER);
         final boolean hasHomeKey = (deviceKeys & KEY_MASK_HOME) != 0;
         final boolean hasMenuKey = (deviceKeys & KEY_MASK_MENU) != 0;
@@ -138,15 +132,15 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
                 (PreferenceCategory) prefScreen.findPreference(CATEGORY_VOLUME);
 
         // Power button ends calls.
-        mPowerEndCall = (CheckBoxPreference) findPreference(KEY_POWER_END_CALL);
+        mPowerEndCall = (SwitchPreference) findPreference(KEY_POWER_END_CALL);
 
         // Home button answers calls.
-        mHomeAnswerCall = (CheckBoxPreference) findPreference(KEY_HOME_ANSWER_CALL);
+        mHomeAnswerCall = (SwitchPreference) findPreference(KEY_HOME_ANSWER_CALL);
 
         mHandler = new Handler();
 
         // Force Navigation bar related options
-        mDisableNavigationKeys = (CheckBoxPreference) findPreference(DISABLE_NAV_KEYS);
+        mDisableNavigationKeys = (SwitchPreference) findPreference(DISABLE_NAV_KEYS);
 
         // Only visible on devices that does not have a navigation bar already,
         // and don't even try unless the existing keys can be disabled
@@ -229,17 +223,6 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
             hasAnyBindableKey = true;
         } else {
             prefScreen.removePreference(menuCategory);
-        }
-
-        // Power button ends calls.
-        mPowerEndCall = (SwitchPreference) findPreference(KEY_POWER_END_CALL);
-        if (hasPowerKey) {
-            if (!Utils.isVoiceCapable(getActivity())) {
-                powerCategory.removePreference(mPowerEndCall);
-                mPowerEndCall = null;
-            }
-        } else {
-            prefScreen.removePreference(powerCategory);
         }
 
         if (Utils.hasVolumeRocker(getActivity())) {

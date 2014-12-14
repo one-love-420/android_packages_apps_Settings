@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Copyright (C) 2014 The Euphoria-OS Project
-
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
      You may obtain a copy of the License at
-
           http://www.apache.org/licenses/LICENSE-2.0
-
      Unless required by applicable law or agreed to in writing, software
      distributed under the License is distributed on an "AS IS" BASIS,
      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -37,16 +34,14 @@
     <!-- About phone screen, status item label -->
 
     <!-- Advanced category -->
-    <string name="category_advanced_options_title">Advanced</string>
+    <string name="advanced_options_title">Advanced</string>
+
+    <!-- General category -->
+    <string name="general_options_title">General</string>
 
     <!--Wakeup when plugged/unplugged -->
     <string name="wakeup_when_plugged_unplugged_title">Wake up on charge</string>
     <string name="wakeup_when_plugged_unplugged_summary">Turn the screen on when connecting or disconnecting a power source</string>
-
-    <!-- UI debug setting: show CPU info? [CHAR LIMIT=25] -->
-    <string name="show_cpu_info">Show CPU info</string>
-    <!-- UI debug setting: show cpu usage summary [CHAR LIMIT=50] -->
-    <string name="show_cpu_info_summary">Screen overlay showing current CPU info</string>
 
     <!-- Font size sample text. This needs to be a very short string, as it is shown in
     multiple font sizes in a limited amount of space. -->
@@ -54,6 +49,11 @@
 
     <!--Back to kill timeout -->
     <string name="long_press_kill_delay">App kill delay</string>
+
+    <!-- UI debug setting: show CPU info? [CHAR LIMIT=25] -->
+    <string name="show_cpu_info">Show CPU info</string>
+    <!-- UI debug setting: show cpu usage summary [CHAR LIMIT=50] -->
+    <string name="show_cpu_info_summary">Screen overlay showing current CPU info</string>
 
     <!--Status bar -->
     <string name="status_bar_category">Status bar</string>
@@ -64,8 +64,9 @@
     <string name="power_category">Power button</string>
     <string name="lockscreen_enable_power_menu_title">Show power menu lock screen</string>
 
-    <!-- SuperSU header name - the app hides itself from launcher based on this resource name being present in com.android.settings -->
-    <string name="supersu_title">SuperSU</string>
+    <!-- Touch control -->
+    <string name="touch_control_settings_title">Touch control</string>
+    <string name="touch_control_settings_summary">Manage advance wakeup options including double tap to wake and more</string>
 
     <!-- Status bar | Clock -->
     <string name="status_bar_clock_category">Status bar</string>
@@ -105,4 +106,7 @@
     <string name="quick_settings_category">Quick settings</string>
     <string name="block_on_secure_keyguard_title">Disable on lockscreen</string>
     <string name="block_on_secure_keyguard_summary">Disable quick settings on secure lockscreen.</string>
+
+    <!-- SuperSU header name - the app hides itself from launcher based on this resource name being present in com.android.settings -->
+    <string name="supersu_title">SuperSU</string>
 </resources>

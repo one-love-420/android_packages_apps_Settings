@@ -2145,6 +2145,9 @@
                 android:resource="@id/sim_settings" />
         </activity>
 
+        <activity android:name=".liquid.gestureanywhere.GestureAnywhereBuilderActivity" />
+        <activity android:name=".liquid.gestureanywhere.GestureAnywhereCreateGestureActivity" />
+
         <provider
             android:name=".search.SettingsSearchIndexablesProvider"
             android:authorities="com.android.settings"

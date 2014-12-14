@@ -122,7 +122,12 @@
                 <PreferenceScreen
                     android:key="screen_recorder"
                     android:title="@string/screen_recorder_title"
-                    android:fragment="com.android.settings.euphoria.ScreenRecorderSettings" >
+                    android:fragment="com.android.settings.euphoria.ScreenRecorderSettings" />
+
+                <PreferenceScreen
+                    android:key="gesture_anywhere"
+                    android:title="@string/gesture_anywhere_title"
+                    android:fragment="com.android.settings.liquid.gestureanywhere.GestureAnywhereSettings" >
                 </PreferenceScreen>
 
         </PreferenceCategory>

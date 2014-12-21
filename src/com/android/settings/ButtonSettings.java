@@ -248,6 +248,7 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
             hasAnyBindableKey = true;
         } else {
             prefScreen.removePreference(appSwitchCategory);
+        }
 
         if (hasBackKey) {
             if (!showBackWake) {

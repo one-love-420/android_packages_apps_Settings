@@ -33,6 +33,11 @@
             android:summary="@string/navigation_bar_left_summary"
             android:defaultValue="false" />
 
+        <PreferenceScreen
+            android:key="navigation_bar_dimen"
+            android:fragment="com.android.settings.euphoria.NavBarDimen"
+            android:title="@string/navbar_dimen_title" />
+
     </PreferenceCategory>
 
     <PreferenceCategory

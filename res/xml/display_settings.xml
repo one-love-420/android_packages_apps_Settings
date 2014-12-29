@@ -125,6 +125,12 @@
                     android:fragment="com.android.settings.euphoria.ScreenRecorderSettings" />
 
                 <PreferenceScreen
+                    android:key="aokp_animation"
+                    android:title="@string/aokp_animation_title"
+                    android:summary="@string/aokp_animation_summary"
+                    android:fragment="com.android.settings.liquid.AnimationControls" />
+
+                <PreferenceScreen
                     android:key="gesture_anywhere"
                     android:title="@string/gesture_anywhere_title"
                     android:fragment="com.android.settings.liquid.gestureanywhere.GestureAnywhereSettings" >

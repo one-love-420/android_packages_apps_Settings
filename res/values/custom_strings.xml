@@ -20,7 +20,7 @@
 
     <!-- Updater -->
     <string name="updater_title">Updates</string>
-    <string name="updater_summary">Check for updates and more</string>
+    <string name="updater_summary">Check for updates</string>
 
     <!-- Button settings  -->
     <string name="button_settings_title">Buttons</string>
@@ -124,6 +124,10 @@
     <string name="quick_settings_collapse_title">Auto close panel</string>
     <string name="quick_settings_collapse_summary">Close the Quick Settings panel upon toggle</string>
 
+        <!-- QuickSettings brightness slider -->
+    <string name="qs_brightness_slider_title">Show brightness slider</string>
+    <string name="qs_brightness_slider_summary">Show a brightness slider in the quick settings panel</string>
+
     <!-- SuperSU header name - the app hides itself from launcher based on this resource name being present in com.android.settings -->
     <string name="supersu_title">SuperSU</string>
 
@@ -169,6 +173,8 @@
     <string name="recents_clear_all_location_top_left">Top left</string>
     <string name="recents_clear_all_location_bottom_right">Bottom right</string>
     <string name="recents_clear_all_location_bottom_left">Bottom left</string>
+    <string name="recents_clear_all_dismiss_all_title">Clear all tasks</string>
+    <string name="recents_clear_all_dismiss_all_summary">Choose whether to dismiss all tasks or ignore the foreground task</string>
     <string name="recents_searchbar_title">Search bar</string>
     <string name="recents_searchbar_summary">Show Google search bar in the recents screen</string>
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     Copyright (C) 2012-2014 The CyanogenMod Project
+     Copyright (C) 2012-2015 The CyanogenMod Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -48,6 +48,16 @@
     <string-array name="profile_connection_entries">
         <item>Disable</item>
         <item>Enable</item>
+    </string-array>
+
+    <!-- Profile 2G-3G and 4G mode options. -->
+    <string-array name="profile_networkmode_entries_4g" translatable="false">
+        <item>@string/profile_networkmode_2g</item>
+        <item>@string/profile_networkmode_3g</item>
+        <item>@string/profile_networkmode_4g</item>
+        <item>@string/profile_networkmode_2g3g</item>
+        <item>@string/profile_networkmode_2g3g4g</item>
+        <item>@string/profile_action_none</item>
     </string-array>
 
     <!-- Profile 2G-3G mode options. -->
@@ -441,4 +451,14 @@
         <item>2</item>
     </string-array>
 
+    <string-array name="power_menu_actions_array" translatable="false">
+        <item>power</item>
+        <item>reboot</item>
+        <item>screenshot</item>
+        <item>screenrecord</item>
+        <item>profile</item>
+        <item>airplane</item>
+        <item>users</item>
+        <item>silent</item>
+    </string-array>
 </resources>

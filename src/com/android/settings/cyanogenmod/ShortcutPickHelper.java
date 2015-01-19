@@ -77,6 +77,8 @@ public class ShortcutPickHelper {
                 processShortcut(data, REQUEST_PICK_APPLICATION, REQUEST_CREATE_SHORTCUT);
                 break;
             }
+        } else {
+            mListener.shortcutPicked(null, null, false);
         }
     }
 
@@ -257,6 +259,9 @@ public class ShortcutPickHelper {
             }
             TextView textView = (TextView)convertView.findViewById(android.R.id.text1);
             textView.setText(getGroup(groupPosition).label.toString());
+            }
+            TextView textView = (TextView)convertView.findViewById(android.R.id.text1);
+            textView.setText(getGroup(groupPosition).label);
             return convertView;
         }
 
@@ -322,3 +327,4 @@ public class ShortcutPickHelper {
         return uri;
     }
 }
+

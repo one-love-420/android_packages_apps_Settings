@@ -106,9 +106,6 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
 
     private static final String KEY_LISTVIEW_ANIMATION = "listview_animation";
     private static final String KEY_LISTVIEW_INTERPOLATOR = "listview_interpolator";
-    private static final String KEY_AUTO_ROTATE = "auto_rotate";
-    private static final String KEY_NAVIGATION_BAR_HEIGHT = "navigation_bar_height";
-    private static final String DISABLE_IMMERSIVE_MESSAGE = "disable_immersive_message";
     private static final String KEY_TOAST_ANIMATION = "toast_animation";
 
     private static final int DLG_GLOBAL_CHANGE_WARNING = 1;
@@ -121,11 +118,11 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private ListPreference mScreenTimeoutPreference;
     private ListPreference mListViewAnimation;
     private ListPreference mListViewInterpolator;
+    private ListPreference mToastAnimation;
     private Preference mScreenSaverPreference;
     private SwitchPreference mLiftToWakePreference;
     private SwitchPreference mDozePreference;
     private SwitchPreference mAutoBrightnessPreference;
-    private ListPreference mToastAnimation;
     private SwitchPreference mWakeWhenPluggedOrUnplugged;
     private SwitchPreference mTapToWake;
 
@@ -148,6 +145,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         public void onChange() {
             updateDisplayRotationPreferenceDescription();
         }
+    };
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -230,16 +228,9 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         updateTimeoutPreferenceDescription(currentTimeout);
         updateDisplayRotationPreferenceDescription();
 
-        mFontSizePref = (WarnedListPreference) findPreference(KEY_FONT_SIZE);
+        mFontSizePref = (FontDialogPreference) findPreference(KEY_FONT_SIZE);
         mFontSizePref.setOnPreferenceChangeListener(this);
         mFontSizePref.setOnPreferenceClickListener(this);
-
-        mToastAnimation = (ListPreference) prefSet.findPreference(KEY_TOAST_ANIMATION);
-        mToastAnimation.setSummary(mToastAnimation.getEntry());
-        int CurrentToastAnimation = Settings.System.getInt(
-                getContentResolver(),Settings.System.TOAST_ANIMATION, 1);
-        mToastAnimation.setValueIndex(CurrentToastAnimation);
-        mToastAnimation.setOnPreferenceChangeListener(this);
 
         // List view animation
         mListViewAnimation = (ListPreference) findPreference(KEY_LISTVIEW_ANIMATION);
@@ -256,6 +247,13 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         mListViewInterpolator.setSummary(mListViewInterpolator.getEntry());
         mListViewInterpolator.setOnPreferenceChangeListener(this);
         mListViewInterpolator.setEnabled(listviewanimation > 0);
+
+        mToastAnimation = (ListPreference) findPreference(KEY_TOAST_ANIMATION);
+        int CurrentToastAnimation = Settings.System.getInt(
+                getContentResolver(),Settings.System.TOAST_ANIMATION, 1);
+        mToastAnimation.setValueIndex(CurrentToastAnimation);
+        mToastAnimation.setSummary(mToastAnimation.getEntry());
+        mToastAnimation.setOnPreferenceChangeListener(this);
 
         if (isAutomaticBrightnessAvailable(getResources())) {
             mAutoBrightnessPreference = (SwitchPreference) findPreference(KEY_AUTO_BRIGHTNESS);

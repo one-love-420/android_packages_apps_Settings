@@ -92,6 +92,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
 
     private static final String CATEGORY_GENERAL = "general_options";
     private static final String CATEGORY_ADVANCED = "advanced_options";
+    private static final String CATEGORY_ANIMATIONS = "animation_options";
 
     private static final String KEY_ADAPTIVE_BACKLIGHT = "adaptive_backlight";
     private static final String KEY_SUNLIGHT_ENHANCEMENT = "sunlight_enhancement";
@@ -159,6 +160,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
 
         PreferenceCategory generalPrefs = (PreferenceCategory) findPreference(CATEGORY_GENERAL);
         PreferenceCategory advancedPrefs = (PreferenceCategory) findPreference(CATEGORY_ADVANCED);
+        PreferenceCategory animationPrefs = (PreferenceCategory) findPreference(CATEGORY_ANIMATIONS);
 
         if (isAutomaticBrightnessAvailable(getResources())) {
             mAutoBrightnessPreference = (SwitchPreference) findPreference(KEY_AUTO_BRIGHTNESS);

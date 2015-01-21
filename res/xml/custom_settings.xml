@@ -28,6 +28,12 @@
     </PreferenceScreen>
 
     <PreferenceScreen
+        android:key="gesture_anywhere"
+        android:title="@string/gesture_anywhere_title"
+        android:fragment="com.android.settings.liquid.gestureanywhere.GestureAnywhereSettings" >
+    </PreferenceScreen>
+
+    <PreferenceScreen
         android:key="lock_clock"
         android:title="@string/lock_clock_title">
         <intent android:action="android.intent.action.MAIN"

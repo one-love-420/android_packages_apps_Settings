@@ -122,18 +122,21 @@
                 <PreferenceScreen
                     android:key="screen_recorder"
                     android:title="@string/screen_recorder_title"
-                    android:fragment="com.android.settings.euphoria.ScreenRecorderSettings" />
+                    android:fragment="com.android.settings.euphoria.ScreenRecorderSettings" >
+                </PreferenceScreen>
 
-                <PreferenceScreen
-                    android:key="density_changer"
-                    android:title="@string/lcd_density_title"
-                    android:fragment="com.android.settings.euphoria.Density" />
+        </PreferenceCategory>
+
+        <PreferenceCategory
+                android:key="animation_options"
+                android:title="@string/animations_options_title" >
 
                 <PreferenceScreen
                     android:key="aokp_animation"
                     android:title="@string/aokp_animation_title"
                     android:summary="@string/aokp_animation_summary"
-                    android:fragment="com.android.settings.liquid.AnimationControls" />
+                    android:fragment="com.android.settings.liquid.AnimationControls" >
+                </PreferenceScreen>
 
                 <!-- List view animation -->
                 <ListPreference
@@ -159,17 +162,17 @@
                     android:entryValues="@array/toast_animation_values"
                     android:persistent="false" />
 
-                <PreferenceScreen
-                    android:key="gesture_anywhere"
-                    android:title="@string/gesture_anywhere_title"
-                    android:fragment="com.android.settings.liquid.gestureanywhere.GestureAnywhereSettings" >
-                </PreferenceScreen>
-
         </PreferenceCategory>
 
         <PreferenceCategory
                 android:key="advanced_options"
                 android:title="@string/advanced_options_title" >
+
+                <PreferenceScreen
+                    android:key="density_changer"
+                    android:title="@string/lcd_density_title"
+                    android:fragment="com.android.settings.euphoria.Density" >
+                </PreferenceScreen>
 
                 <SwitchPreference
                     android:key="double_tap_wake_gesture"

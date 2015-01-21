@@ -31,69 +31,81 @@
         android:entries="@array/status_bar_battery_percentage_entries"
         android:entryValues="@array/status_bar_battery_percentage_values" />
 
-     <ListPreference
-        android:key="battery_bar_list"
-        android:title="@string/battery_bar"
-        android:entries="@array/battery_bar_entries"
-        android:entryValues="@array/battery_bar_values" />
+    <PreferenceCategory
+        android:key="category_status_bar_battery_bar"
+        android:title="@string/battery_bar_title">
 
-     <net.margaritov.preference.colorpicker.ColorPickerPreference
-        android:key="battery_bar_color"
-        android:title="@string/battery_bar_color"
-        android:defaultValue="0xffffffff" />
+        <ListPreference
+            android:key="battery_bar_list"
+            android:title="@string/battery_bar"
+            android:entries="@array/battery_bar_entries"
+            android:entryValues="@array/battery_bar_values" />
 
-     <ListPreference
-        android:key="battery_bar_style"
-        android:title="@string/battery_bar_style_title"
-        android:entries="@array/battery_bar_style_entries"
-        android:entryValues="@array/battery_bar_style_values" />
+        <net.margaritov.preference.colorpicker.ColorPickerPreference
+            android:key="battery_bar_color"
+            android:title="@string/battery_bar_color"
+            android:defaultValue="0xffffffff" />
 
-     <ListPreference
-        android:key="battery_bar_thickness"
-        android:title="@string/battery_bar_thickness_title"
-        android:entries="@array/battery_bar_thickness_entries"
-        android:entryValues="@array/battery_bar_thickness_values" />
+        <ListPreference
+            android:key="battery_bar_style"
+            android:title="@string/battery_bar_style_title"
+            android:entries="@array/battery_bar_style_entries"
+            android:entryValues="@array/battery_bar_style_values" />
 
-     <SwitchPreference
-        android:key="battery_bar_animate"
-        android:title="@string/battery_bar_animate_title"
-        android:summary="@string/battery_bar_animate_summary" />
+        <ListPreference
+            android:key="battery_bar_thickness"
+            android:title="@string/battery_bar_thickness_title"
+            android:entries="@array/battery_bar_thickness_entries"
+            android:entryValues="@array/battery_bar_thickness_values" />
 
-    <ListPreference
-        android:key="status_bar_show_carrier"
-        android:title="@string/show_carrier_title"
-        android:dialogTitle="@string/show_carrier_title"
-        android:entries="@array/carrier_label_entries"
-        android:entryValues="@array/carrier_label_values" />
+        <SwitchPreference
+            android:key="battery_bar_animate"
+            android:title="@string/battery_bar_animate_title"
+            android:summary="@string/battery_bar_animate_summary" />
 
-    <com.android.settings.cyanogenmod.SystemSettingSwitchPreference
-        android:key="status_bar_notif_count"
-        android:title="@string/status_bar_notif_count_title"
-        android:summary="@string/status_bar_notif_count_summary"
-        android:defaultValue="false" />
+    </PreferenceCategory>
 
-    <com.android.settings.cyanogenmod.SystemSettingSwitchPreference
-        android:key="status_bar_ticker_enabled"
-        android:title="@string/status_bar_ticker_title"
-        android:summary="@string/status_bar_ticker_summary"
-        android:defaultValue="false" />
+    <PreferenceCategory
+        android:key="general_options"
+        android:title="@string/general_options_title">
 
-    <com.android.settings.cyanogenmod.SystemSettingSwitchPreference
-        android:key="show_su_icon"
-        android:title="@string/su_indicator"
-        android:summary="@string/su_indicator_summary"
-        android:defaultValue="true" />
+        <ListPreference
+            android:key="status_bar_show_carrier"
+            android:title="@string/show_carrier_title"
+            android:dialogTitle="@string/show_carrier_title"
+            android:entries="@array/carrier_label_entries"
+            android:entryValues="@array/carrier_label_values" />
 
-    <com.android.settings.cyanogenmod.SystemSettingSwitchPreference
-        android:key="status_bar_brightness_control"
-        android:title="@string/status_bar_toggle_brightness"
-        android:summary="@string/status_bar_toggle_brightness_summary"
-        android:defaultValue="false" />
+        <com.android.settings.cyanogenmod.SystemSettingSwitchPreference
+            android:key="status_bar_notif_count"
+            android:title="@string/status_bar_notif_count_title"
+            android:summary="@string/status_bar_notif_count_summary"
+            android:defaultValue="false" />
 
-    <com.android.settings.cyanogenmod.SystemSettingSwitchPreference
-        android:key="status_bar_show_weather"
-        android:title="@string/status_bar_show_weather_title"
-        android:summary="@string/status_bar_show_weather_summary"
-        android:defaultValue="false" />
+        <com.android.settings.cyanogenmod.SystemSettingSwitchPreference
+            android:key="status_bar_ticker_enabled"
+            android:title="@string/status_bar_ticker_title"
+            android:summary="@string/status_bar_ticker_summary"
+            android:defaultValue="false" />
+
+        <com.android.settings.cyanogenmod.SystemSettingSwitchPreference
+           android:key="show_su_icon"
+           android:title="@string/su_indicator"
+           android:summary="@string/su_indicator_summary"
+           android:defaultValue="true" />
+
+        <com.android.settings.cyanogenmod.SystemSettingSwitchPreference
+           android:key="status_bar_brightness_control"
+           android:title="@string/status_bar_toggle_brightness"
+           android:summary="@string/status_bar_toggle_brightness_summary"
+           android:defaultValue="false" />
+
+        <com.android.settings.cyanogenmod.SystemSettingSwitchPreference
+           android:key="status_bar_show_weather"
+           android:title="@string/status_bar_show_weather_title"
+           android:summary="@string/status_bar_show_weather_summary"
+           android:defaultValue="false" />
+
+    </PreferenceCategory>
 
 </PreferenceScreen>

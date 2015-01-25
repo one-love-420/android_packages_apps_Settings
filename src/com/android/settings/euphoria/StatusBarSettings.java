@@ -34,6 +34,8 @@ import android.provider.Settings.SettingNotFoundException;
 import android.text.format.DateFormat;
 import android.view.View;
 
+import java.util.Date;
+
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.Utils;
@@ -44,8 +46,12 @@ import net.margaritov.preference.colorpicker.ColorPickerPreference;
 public class StatusBarSettings extends SettingsPreferenceFragment
             implements OnPreferenceChangeListener  {
 
+    private static final String GENERAL_CATEGORY = "general_category";
+
     private static final String STATUS_BAR_CLOCK_STYLE = "status_bar_clock";
     private static final String STATUS_BAR_AM_PM = "status_bar_am_pm";
+    private static final String STATUS_BAR_DATE_STYLE = "status_bar_date";
+    private static final String STATUS_BAR_DATE_FORMAT = "status_bar_date_format";
     private static final String STATUS_BAR_BATTERY_STYLE = "status_bar_battery_style";
     private static final int STATUS_BAR_BATTERY_STYLE_HIDDEN = 4;
     private static final int STATUS_BAR_BATTERY_STYLE_TEXT = 6;
@@ -60,6 +66,8 @@ public class StatusBarSettings extends SettingsPreferenceFragment
 
     private ListPreference mStatusBarClock;
     private ListPreference mStatusBarAmPm;
+    private ListPreference mStatusBarDate;
+    private ListPreference mStatusBarDateFormat;
     private ListPreference mStatusBarBatteryShowPercent;
     private ListPreference mStatusBarBattery;
     private ListPreference mShowCarrierLabel;
@@ -80,8 +88,13 @@ public class StatusBarSettings extends SettingsPreferenceFragment
         int intColor;
         String hexColor;
 
+        final PreferenceCategory generalCategory =
+                (PreferenceCategory) prefSet.findPreference(GENERAL_CATEGORY);
+
         mStatusBarClock = (ListPreference) findPreference(STATUS_BAR_CLOCK_STYLE);
         mStatusBarAmPm = (ListPreference) findPreference(STATUS_BAR_AM_PM);
+        mStatusBarDate = (ListPreference) findPreference(STATUS_BAR_DATE_STYLE);
+        mStatusBarDateFormat = (ListPreference) findPreference(STATUS_BAR_DATE_FORMAT);
 
         mStatusBarBattery = (ListPreference) findPreference(STATUS_BAR_BATTERY_STYLE);
         mStatusBarBatteryShowPercent =
@@ -103,6 +116,20 @@ public class StatusBarSettings extends SettingsPreferenceFragment
             mStatusBarAmPm.setSummary(mStatusBarAmPm.getEntry());
             mStatusBarAmPm.setOnPreferenceChangeListener(this);
         }
+
+        int dateStyle = Settings.System.getInt(resolver,
+                Settings.System.STATUS_BAR_DATE, 0);
+        mStatusBarDate.setValue(String.valueOf(dateStyle));
+        mStatusBarDate.setSummary(mStatusBarDate.getEntry());
+        mStatusBarDate.setOnPreferenceChangeListener(this);
+
+        mStatusBarDateFormat.setOnPreferenceChangeListener(this);
+        mStatusBarDateFormat.setSummary(mStatusBarDateFormat.getEntry());
+        if (mStatusBarDateFormat.getValue() == null) {
+            mStatusBarDateFormat.setValue("EEE");
+        }
+
+        parseClockDateFormats();
 
         int batteryStyle = Settings.System.getInt(resolver, Settings.System.STATUS_BAR_BATTERY_STYLE, 0);
         mStatusBarBattery.setValue(String.valueOf(batteryStyle));
@@ -153,8 +180,10 @@ public class StatusBarSettings extends SettingsPreferenceFragment
         mShowCarrierLabel.setOnPreferenceChangeListener(this);
 
         if (!Utils.isVoiceCapable(getActivity())) {
-            prefSet.removePreference(mShowCarrierLabel);
+            generalCategory.removePreference(mShowCarrierLabel);
         }
+
+        enableStatusBarClockDependents();
     }
 
     @Override
@@ -178,6 +207,7 @@ public class StatusBarSettings extends SettingsPreferenceFragment
             Settings.System.putInt(
                     resolver, STATUS_BAR_CLOCK_STYLE, clockStyle);
             mStatusBarClock.setSummary(mStatusBarClock.getEntries()[index]);
+            enableStatusBarClockDependents();
             return true;
         } else if (preference == mStatusBarAmPm) {
             int statusBarAmPm = Integer.valueOf((String) newValue);
@@ -185,6 +215,21 @@ public class StatusBarSettings extends SettingsPreferenceFragment
             Settings.System.putInt(
                     resolver, STATUS_BAR_AM_PM, statusBarAmPm);
             mStatusBarAmPm.setSummary(mStatusBarAmPm.getEntries()[index]);
+            return true;
+        } else if (preference == mStatusBarDate) {
+            int statusBarDate = Integer.valueOf((String) newValue);
+            int index = mStatusBarDate.findIndexOfValue((String) newValue);
+            Settings.System.putInt(
+                    resolver, STATUS_BAR_DATE_STYLE, statusBarDate);
+            mStatusBarDate.setSummary(mStatusBarDate.getEntries()[index]);
+            return true;
+        } else if (preference ==  mStatusBarDateFormat) {
+            int index = mStatusBarDateFormat.findIndexOfValue((String) newValue);
+            if ((String) newValue != null) {
+                Settings.System.putString(getActivity().getContentResolver(),
+                   Settings.System.STATUS_BAR_DATE_FORMAT, (String) newValue);
+            mStatusBarDateFormat.setSummary(mStatusBarDateFormat.getEntries()[index]);
+            }
             return true;
         } else if (preference == mStatusBarBattery) {
             int batteryStyle = Integer.valueOf((String) newValue);
@@ -272,5 +317,37 @@ public class StatusBarSettings extends SettingsPreferenceFragment
         } else {
             mStatusBarBatteryShowPercent.setEnabled(true);
         }
+    }
+
+    private void enableStatusBarClockDependents() {
+        int clockStyle = Settings.System.getInt(getActivity()
+                .getContentResolver(), Settings.System.STATUS_BAR_CLOCK, 1);
+        if (clockStyle == 0) {
+            mStatusBarDate.setEnabled(false);
+            mStatusBarDateFormat.setEnabled(false);
+        } else {
+            mStatusBarDate.setEnabled(true);
+            mStatusBarDateFormat.setEnabled(true);
+        }
+    }
+
+    private void parseClockDateFormats() {
+        // Parse and repopulate mClockDateFormats's entries based on current date.
+        String[] dateEntries = getResources().getStringArray(R.array.status_bar_date_format_entries_values);
+        CharSequence parsedDateEntries[];
+        parsedDateEntries = new String[dateEntries.length];
+        Date now = new Date();
+        int lastEntry = dateEntries.length - 1;
+        for (int i = 0; i < dateEntries.length; i++) {
+            if (i == lastEntry) {
+                parsedDateEntries[i] = dateEntries[i];
+            } else {
+                String newDate;
+                CharSequence dateString = DateFormat.format(dateEntries[i], now);
+                newDate = dateString.toString().toLowerCase();
+                parsedDateEntries[i] = newDate;
+            }
+        }
+        mStatusBarDateFormat.setEntries(parsedDateEntries);
     }
 }

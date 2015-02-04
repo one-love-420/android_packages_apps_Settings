@@ -124,6 +124,7 @@
                     android:title="@string/screen_recorder_title"
                     android:fragment="com.android.settings.euphoria.ScreenRecorderSettings" >
                 </PreferenceScreen>
+
         </PreferenceCategory>
 
         <PreferenceCategory
@@ -166,6 +167,12 @@
         <PreferenceCategory
                 android:key="advanced_options"
                 android:title="@string/advanced_options_title" >
+
+                <PreferenceScreen
+                    android:key="density_changer"
+                    android:title="@string/lcd_density_title"
+                    android:fragment="com.android.settings.euphoria.Density" >
+                </PreferenceScreen>
 
                 <SwitchPreference
                     android:key="double_tap_wake_gesture"

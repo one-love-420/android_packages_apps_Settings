@@ -291,6 +291,7 @@
     <!-- Privacy guard notification -->
     <string name="privacy_guard_notification_title">Notification</string>
     <string name="privacy_guard_notifiation_summary">Show a notification if privacy guard is active</string>
+
     <!-- Toast animations -->
     <string name="toast_animation_title">Toast animations</string>
     <string name="toast_animation_summary">Select and preview system toast animation</string>
@@ -337,9 +338,4 @@
 
     <!-- Animations category -->
     <string name="animations_options_title">Animations</string>
-
-    <!-- Lock screen shortcuts -->
-    <string name="lockscreen_message_disabled">Shortcuts are disabled.</string>
-    <string name="lockscreen_shortcuts_enabled">Lock screen shortcuts are enabled</string>
-    <string name="lockscreen_shortcuts_disabled">Lock screen shortcuts are disabled</string>
 </resources>

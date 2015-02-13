@@ -71,8 +71,6 @@ import com.android.settings.search.SearchIndexableRaw;
 
 import com.android.internal.util.cm.ScreenType;
 
-import com.android.settings.cyanogenmod.SystemSettingSwitchPreference;
-
 import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -115,7 +113,7 @@ public class InputMethodAndLanguageSettings extends SettingsPreferenceFragment
     private PreferenceCategory mKeyboardSettingsCategory;
     private PreferenceCategory mHardKeyboardCategory;
     private PreferenceCategory mGameControllerCategory;
-    private SystemSettingSwitchPreference mFullScreenKeyboard;
+    private SwitchPreference mFullScreenKeyboard;
     private Preference mLanguagePref;
     private PreferenceScreen mStylusGestures;
     private final ArrayList<InputMethodPreference> mInputMethodPreferenceList = new ArrayList<>();
@@ -232,8 +230,7 @@ public class InputMethodAndLanguageSettings extends SettingsPreferenceFragment
             }
         }
 
-        mFullScreenKeyboard = (
-                SystemSettingSwitchPreference) findPreference(KEY_FULL_SCREEN_KEYBOARD);
+        mFullScreenKeyboard = (SwitchPreference) findPreference(KEY_FULL_SCREEN_KEYBOARD);
         if (mFullScreenKeyboard != null && !ScreenType.isPhone(getActivity())) {
             getPreferenceScreen().removePreference(mFullScreenKeyboard);
         }

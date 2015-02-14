@@ -307,7 +307,6 @@
     <string name="privacy_guard_notification_title">Notification</string>
     <string name="privacy_guard_notifiation_summary">Show a notification if privacy guard is active</string>
 
-<<<<<<< HEAD
     <!-- Toast animations -->
     <string name="toast_animation_title">Toast animations</string>
     <string name="toast_animation_summary">Select and preview system toast animation</string>

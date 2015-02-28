@@ -212,16 +212,10 @@ public class MultiSimEnablerPreference extends SwitchPreference implements
         super.onClick();
         mClicking = false;
     }
-
-<<<<<<< HEAD
-    private void updateTitle() {
-        if (mSubTitle == null) return;
-        mSubTitle.setText(mSir == null ? "SUB" : mSir.displayName);
-=======
+    
     private void sendMessage(int event, Handler handler, int delay) {
         Message message = handler.obtainMessage(event);
         handler.sendMessageDelayed(message, delay);
->>>>>>> 0ca047b... Clean up MultiSimEnablerPreference.
     }
 
     private boolean hasCard() {
